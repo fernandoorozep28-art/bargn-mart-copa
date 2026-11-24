@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barg'N-Mart | La Gran Copa Bikini Bottom</title>
+<style>
+:root{
+  --deep:#062d47;
+  --ocean:#0b5e85;
+  --aqua:#1797bd;
+  --foam:#d8f8ff;
+  --gold:#ffd84d;
+  --gold-dark:#c98a12;
+  --coral:#ff6b57;
+  --purple:#7c4dff;
+  --ink:#12293b;
+  --card:#fffdf7;
+  --red:#d93848;
+  --green:#14865a;
+  --border:#093752;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--ink);
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255,255,255,.22) 0 18px, transparent 19px),
+    radial-gradient(circle at 86% 10%, rgba(255,255,255,.18) 0 26px, transparent 27px),
+    radial-gradient(circle at 22% 48%, rgba(255,255,255,.14) 0 14px, transparent 15px),
+    radial-gradient(circle at 78% 62%, rgba(255,255,255,.16) 0 22px, transparent 23px),
+    radial-gradient(circle at 52% 85%, rgba(255,255,255,.15) 0 16px, transparent 17px),
+    linear-gradient(180deg,#1285ad 0%,#0b5c82 42%,#073b59 82%,#c7a66b 82%,#b59155 100%);
+}
+header{padding:18px 16px 14px}
+.wrap{max-width:1080px;margin:auto;padding:0 14px}
+.top-banners{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:14px;
+  align-items:stretch;
+}
+.banner-box{
+  background:linear-gradient(180deg,#ffe47a,#ffbe2e);
+  border:3px solid var(--border);
+  border-radius:20px;
+  padding:12px 16px;
+  box-shadow:0 5px 0 var(--border), 0 10px 20px rgba(0,0,0,.25);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.banner-box.alt{
+  background:linear-gradient(180deg,#fff3bd,#ffd454);
+  justify-content:center;
+  text-align:center;
+}
+.brand-logo-img{
+  width:68px;height:68px;border-radius:16px;flex:0 0 auto;
+  object-fit:cover;
+  border:3px solid var(--border);
+  background:#ffd84d;
+  box-shadow:0 3px 0 var(--border);
+  display:block;
+}
+.shield-box{
+  position:relative;
+  overflow:hidden;
+  border:2.5px solid var(--border);
+  background:#111a36;
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.shield-box.lg{width:48px;height:48px;border-radius:13px}
+.shield-box.sm{width:34px;height:34px;border-radius:9px;border-width:2px}
+.shield-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none;
+  user-select:none;
+  display:block;
+}
+.team-cell{display:flex;align-items:center;gap:8px}
+h1{
+  margin:0;
+  font-size:clamp(22px,4.5vw,34px);
+  font-weight:950;
+  color:var(--deep);
+  letter-spacing:-.5px;
+  text-shadow:0 2px 0 rgba(255,255,255,.65);
+}
+.sub{
+  margin:3px 0 0;
+  font-size:13px;
+  font-weight:800;
+  color:#0a4663;
+}
+.banner-title{
+  margin:0;
+  font-size:clamp(16px,3.2vw,22px);
+  font-weight:950;
+  color:var(--deep);
+  line-height:1.15;
+}
+main{padding:14px 0 64px}
+.panel{
+  background:var(--card);
+  border:3px solid var(--border);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 6px 0 var(--border), 0 12px 24px rgba(0,0,0,.24);
+  margin-bottom:18px;
+}
+.panel.ocean-card{
+  background:rgba(8,56,82,.88);
+  color:#fff;
+  border-color:#052233;
+}
+.panel.ocean-card h2,.panel.ocean-card h3{color:var(--gold)}
+h2{margin:0 0 12px;color:var(--deep);font-weight:950;font-size:clamp(20px,3.8vw,25px)}
+h3{margin:0 0 8px;color:var(--deep);font-weight:900}
+.muted{color:#4d6b7e;font-size:14px}
+.panel.ocean-card .muted{color:#cbeeff}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.spacer{flex:1}
+button,input,select{
+  font:inherit;
+  border-radius:14px;
+  border:2.5px solid var(--border);
+  padding:11px 13px;
+}
+input,select{background:#fff;color:var(--ink);min-width:0;font-weight:600}
+button{
+  background:linear-gradient(180deg,#25b2db,#0a7ea6);
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 4px 0 var(--border);
+  transition:transform .08s ease;
+}
+button:active:not(:disabled){transform:translateY(2px);box-shadow:0 2px 0 var(--border)}
+button.goldBtn{background:linear-gradient(180deg,#ffe26e,#f5b318);color:var(--deep)}
+button.secondary{background:linear-gradient(180deg,#e8f8fd,#bfe8f5);color:var(--deep)}
+button.danger{background:linear-gradient(180deg,#ff7682,#d43343);color:#fff}
+button.successBtn{background:linear-gradient(180deg,#25b87b,#117a50);color:#fff}
+button:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+
+.login{max-width:520px;margin:8px auto 18px}
+.login label{display:block;font-weight:850;margin-top:6px;color:var(--deep)}
+.login input{width:100%;margin:6px 0 14px}
+.login button{width:100%}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{background:linear-gradient(180deg,#fff3bd,#ffd54f);color:var(--deep)}
+.tabs button.active{background:linear-gradient(180deg,#154c6b,#082d44);color:var(--gold)}
+
+.tier-header{
+  display:inline-block;
+  padding:7px 16px;
+  border-radius:999px;
+  border:3px solid var(--border);
+  font-weight:950;
+  font-size:14px;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  box-shadow:0 3px 0 var(--border);
+  margin:14px 0 10px;
+}
+.tier-comun{background:#66d2ff;color:var(--deep)}
+.tier-raro{background:#ffd859;color:var(--deep)}
+.tier-epico{background:#c59bff;color:var(--deep)}
+.tier-legendario{background:#ff9657;color:var(--deep)}
+.tier-bonus{background:#7cf0b2;color:var(--deep)}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+.item{
+  border:3px solid var(--border);
+  border-radius:18px;
+  padding:14px;
+  background:linear-gradient(180deg,#ffffff 0%,#f0fbff 100%);
+  box-shadow:0 4px 0 var(--border);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.rarity{
+  align-self:flex-start;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  padding:4px 9px;
+  border-radius:999px;
+  border:2px solid var(--border);
+  background:#e6f7fc;
+  color:var(--deep);
+}
+.desc{
+  color:#1c3d52;
+  font-size:13px;
+  line-height:1.4;
+  background:#fff8dc;
+  border:2px solid #e6c24a;
+  border-radius:12px;
+  padding:8px 10px;
+}
+.price{
+  font-size:25px;
+  font-weight:950;
+  color:var(--deep);
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.spongebob-bill{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:3px 9px;
+  border-radius:7px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.08) 0 4px,
+      rgba(13,66,36,.10) 4px 8px
+    ),
+    linear-gradient(180deg,#8be39b 0%,#52c26b 52%,#379e4e 100%);
+  border:2px solid #0e3b20;
+  box-shadow:inset 0 0 0 1.5px #d7f7dc, 0 2px 0 #0e3b20;
+  color:#082c16;
+  font-size:12px;
+  font-weight:950;
+  line-height:1;
+  letter-spacing:.2px;
+  vertical-align:middle;
+  text-shadow:0 1px 0 rgba(235,255,238,.75);
+}
+.spongebob-bill::before{
+  content:"";
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 38% 36%, #0e3b20 0 1.4px, transparent 1.6px),
+    radial-gradient(circle at 62% 36%, #0e3b20 0 1.4px, transparent 1.6px),
+    linear-gradient(180deg,#c8f5cf 0%,#77d68b 100%);
+  border:1.5px solid #0e3b20;
+  box-shadow:inset 0 0 0 1px #e8ffec;
+  flex:0 0 auto;
+}
+.spongebob-bill.sm{
+  padding:2px 7px;
+  font-size:11px;
+  border-radius:6px;
+}
+.spongebob-bill.sm::before{
+  width:11px;
+  height:11px;
+}
+
+.item button{margin-top:auto}
+
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  border-radius:999px;
+  padding:6px 12px;
+  background:#ffe26e;
+  border:2.5px solid var(--border);
+  color:var(--deep);
+  font-size:13px;
+  font-weight:950;
+}
+
+.board-table{width:100%;border-collapse:collapse;font-size:14px}
+.board-table th{
+  background:#093854;
+  color:var(--gold);
+  padding:10px 8px;
+  text-align:left;
+  border-bottom:3px solid var(--border);
+}
+.board-table td{
+  padding:10px 8px;
+  border-bottom:2px solid rgba(9,55,82,.14);
+  font-weight:750;
+}
+.rank-badge{
+  display:inline-grid;place-items:center;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--border);
+  font-weight:950;color:var(--deep);
+}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #d4e8f0}
+th{color:#3c5d73;font-weight:900}
+.scroll{overflow:auto}
+.notice{
+  padding:12px 14px;
+  border-radius:14px;
+  border:2px solid var(--border);
+  background:#fff4c4;
+  color:#5c4100;
+  font-size:13px;
+  font-weight:700;
+  margin:12px 0;
+}
+.success{background:#dcf7ea;color:#0e593b}
+.diag-box{
+  padding:10px 12px;
+  border-radius:12px;
+  border:2px solid #d43343;
+  background:#ffe9ec;
+  color:#8f1422;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:12px;
+  word-break:break-word;
+}
+.error-msg{color:#b81d2e;font-weight:800;margin-top:8px}
+.rule-footer{
+  margin-top:16px;
+  background:rgba(6,37,56,.92);
+  color:#fff;
+  border:3px solid var(--gold);
+  border-radius:16px;
+  padding:11px 16px;
+  text-align:center;
+  font-size:13px;
+  font-weight:800;
+}
+.rule-footer b{color:var(--gold)}
+.hidden{display:none!important}
+.small{font-size:12px}
+.teamtitle{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.teamtitle h2{margin:0}
+.box{
+  border:2.5px solid var(--border);
+  background:#f3fbff;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+}
+@media(max-width:520px){
+  .panel{padding:15px}
+  .row input,.row select{width:100%}
+  .row button{flex:1}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top-banners">
+      <div class="banner-box">
+        <img id="mainLogoImg" class="brand-logo-img" alt="Logo Barg'N-Mart">
+        <div>
+          <h1>BARG'N-MART</h1>
+          <p class="sub">LA GRAN COPA BIKINI BOTTOM</p>
+        </div>
+      </div>
+      <div class="banner-box alt">
+        <p class="banner-title">DÓLARES DISPONIBLES PARA GASTAR EN LA TIENDA Y COMPRAR ÍTEMS</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="loginView" class="panel login">
+    <h2>Entrar a la tienda</h2>
+    <p class="muted">Cada equipo entra con su código. La administración tiene un acceso independiente.</p>
+    <label for="code">Código de acceso</label>
+    <input id="code" autocomplete="off" placeholder="Escribe tu código">
+    <button id="loginBtn" class="goldBtn" type="button">Ingresar</button>
+    <p id="loginError" class="error-msg"></p>
+    <div class="notice success"><b>Conectado a Supabase:</b> tus equipos, saldos, artículos y compras se mantienen intactos en la nube.</div>
+  </section>
+
+  <section id="appView" class="hidden">
+    <div class="panel">
+      <div class="row">
+        <div>
+          <div class="muted" id="roleLabel"></div>
+          <div class="teamtitle">
+            <div id="activeTeamShieldWrap" class="hidden"></div>
+            <h2 id="welcome"></h2>
+            <span class="pill" id="balancePill"></span>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <button class="secondary" id="refreshBtn" type="button">Actualizar</button>
+        <button class="secondary" id="logoutBtn" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <div id="dbDiag" class="diag-box hidden"></div>
+
+    <div id="teamView" class="hidden">
+      <div class="tabs">
+        <button class="active" data-tab="store" type="button">Tienda</button>
+        <button data-tab="inventory" type="button">Mi inventario</button>
+        <button data-tab="history" type="button">Mis compras</button>
+        <button data-tab="standings" type="button">Tabla de dólares</button>
+      </div>
+
+      <div id="storeTab">
+        <div class="panel">
+          <h2>Catálogo de artículos</h2>
+          <p class="muted">1 gol = $1 acumulado. Comprar <b>NO descuenta dólares</b>. Solo se puede comprar <b>un artículo por jornada</b> y máximo una unidad de cada artículo (con el <b>Ítem Bonus</b> puedes usar <b>dos ítems en una misma jornada</b>).</p>
+          <div id="catalog"></div>
+        </div>
+      </div>
+
+      <div id="inventoryTab" class="panel hidden">
+        <h2>Mi inventario</h2>
+        <div id="inventory"></div>
+      </div>
+
+      <div id="historyTab" class="panel hidden">
+        <h2>Historial de compras</h2>
+        <div id="teamHistory"></div>
+      </div>
+
+      <div id="standingsTab" class="panel ocean-card hidden">
+        <h2>Dólares disponibles por equipo</h2>
+        <div id="teamStandings"></div>
+      </div>
+    </div>
+
+    <div id="adminView" class="hidden">
+      <div class="tabs">
+        <button class="active" data-admin-tab="teams" type="button">Equipos y saldos</button>
+        <button data-admin-tab="catalogAdmin" type="button">Administrar catálogo</button>
+        <button data-admin-tab="records" type="button">Registro de compras</button>
+      </div>
+
+      <div id="teamsTab" class="panel">
+        <h2>Control de equipos</h2>
+        <p class="muted">Crea, edita o elimina equipos, asigna códigos o escudos, y ajusta dólares manualmente (1 gol = $1). Los dólares no se descuentan al comprar.</p>
+        <div class="box">
+          <h3>Crear nuevo equipo</h3>
+          <div class="row">
+            <input id="newTeamName" placeholder="Nombre del equipo">
+            <input id="newTeamCode" placeholder="Código (ej. NUEVO26)">
+            <input id="newTeamShield" placeholder="URL del escudo (opcional)">
+            <input id="newTeamBalance" type="number" min="0" step="1" value="0" placeholder="Saldo inicial" style="width:130px">
+            <button class="successBtn" id="createTeamBtn" type="button">Crear equipo</button>
+          </div>
+        </div>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Equipo y escudo</th><th>Código</th><th>Saldo</th><th>Dólares</th><th>Acciones</th></tr></thead>
+            <tbody id="teamRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="catalogAdminTab" class="panel hidden">
+        <h2>Catálogo y precios</h2>
+        <p class="muted">Crea, edita o elimina artículos y define su efecto / para qué sirve cada uno.</p>
+        <div class="box">
+          <h3>Agregar nuevo artículo</h3>
+          <div class="row">
+            <input id="newItemName" placeholder="Nombre del artículo">
+            <input id="newItemDesc" placeholder="Efecto / ¿Para qué sirve?">
+            <select id="newItemRarity">
+              <option value="Común">Común</option>
+              <option value="Raro">Raro</option>
+              <option value="Épico">Épico</option>
+              <option value="Legendario">Legendario</option>
+              <option value="Bonus">Bonus</option>
+            </select>
+            <input id="newItemPrice" type="number" min="0" step="1" placeholder="Precio ($)" style="width:110px">
+            <button class="successBtn" id="createItemBtn" type="button">Agregar artículo</button>
+          </div>
+        </div>
+        <div id="adminCatalog" class="grid"></div>
+      </div>
+
+      <div id="recordsTab" class="panel hidden">
+        <h2>Compras de todos los equipos</h2>
+        <p class="muted">Filtra o revisa qué artículos ha comprado cada equipo.</p>
+        <div class="row" style="margin-bottom:14px">
+          <label for="filterTeam">Filtrar por equipo:</label>
+          <select id="filterTeam"><option value="">Todos los equipos</option></select>
+        </div>
+        <div id="allRecords"></div>
+      </div>
+    </div>
+
+    <div class="rule-footer">
+      Regla oficial: <b>Solo se puede comprar 1 artículo por jornada</b> · 1 unidad por artículo · Comprar <b>NO descuenta dólares</b> · Ítem Bonus: <b>puedes usar dos ítems en una misma jornada</b> · Solo contrarrestan misma o menor rareza.
+    </div>
+  </section>
+</main>
+
+<script>
+const SUPABASE_URL = 'https://alhouuhaxxtbhiiavcry.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_kV1WrksqdNSzI9C1WWFl9w_aPkRbwf8';
+
+const TABLES = {
+  teams: 'teams',
+  items: 'items',
+  purchases: 'purchases'
+};
+
+// Cambia esta URL por la de tu logo oficial en Supabase Storage si tienes otra imagen
+const DEFAULT_LOGO_URL = 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/473d0f9c-3da4-4ca8-9285-241a3aace55d.jpg';
+
+const TEAM_SHIELDS_BY_KEY = {
+  'ratones': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.23%20PM%20(1).jpeg',
+  'atletico orozco': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.23%20PM%20(2).jpeg',
+  'tiburones': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.23%20PM%20(3).jpeg',
+  'vatos locos': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.23%20PM.jpeg',
+  'mermeladeros': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.24%20PM%20(1).jpeg',
+  'grupo vera': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.24%20PM%20(2).jpeg',
+  'real samela': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.24%20PM%20(3).jpeg',
+  'xolos': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.24%20PM%20(4).jpeg',
+  'ardillas': 'https://alhouuhaxxtbhiiavcry.supabase.co/storage/v1/object/public/images/WhatsApp%20Image%202026-11-24%20at%204.19.24%20PM.jpeg'
+};
+
+const ITEM_EFFECTS_BY_NAME = {
+  'cinturon de sirenoman': 'Ayuda a reducir a la mitad los goles recibidos en un partido.',
+  'batido de algas': 'En caso de meter gol del minuto 1 al minuto 20 este contará al doble.',
+  'mayonesa de patricio': 'Si consumes este item puedes tener acceso a un giro nuevo en la ruleta.',
+  'burbujas': 'Te permite usar un jugador que por alguna razón no puedas utilizar esa jornada.',
+  'red de pesca': 'Este item bloqueará un jugador rival aleatorio.',
+  'cangreburger': 'Los goles que anotes en un partido valen el doble de dinero.',
+  'clarinete': 'Anula el uso de un item antes de que un jugador pueda efectuarlo.',
+  'casco de burbujas': 'Evita sufrir desventajas por dos jornadas (no válido en liguilla).',
+  'cubeta de carnada': 'En caso de que un jugador tenga una ventaja que te perjudique, este item hará que no tenga efecto.',
+  'burbuja sucia': 'Podrás bloquear a un jugador de tu elección del equipo contrario y tendrá que ser sustituido por un jugador de bronce.',
+  'formula secreta': 'Tendrás la opción de elegir entre una gran ventaja o una desventaja fuerte para tu rival.',
+  'lapiz magico': 'Permite alterar la formación del contrario o cambiar de jugadores toda una línea.',
+  'aerosol invisible': 'Te permite ser inmune a cualquier desventaja o items por tres jornadas.',
+  'espatula dorada': 'Todo lo que en un partido esté a tu favor vale por tres (goles, puntos y dinero).',
+  'barco del holandes': 'Anula cualquier desventaja o item y el rival sufrirá una desventaja severa + expulsión de 5 jugadores.',
+  'tesoro del holandes': 'En caso de comprar producto te dará un item al azar sin importar la rareza. Además, te permite usar dos ítems en una misma jornada.'
+};
+
+function normKey(s) {
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function pickField(obj, keys, fallback = '') {
+  if (!obj) return fallback;
+  for (const k of keys) {
+    if (obj[k] !== undefined && obj[k] !== null && String(obj[k]).trim() !== '') {
+      return obj[k];
+    }
+  }
+  return fallback;
+}
+
+function resolveTeamShieldUrl(teamName, dbShieldUrl) {
+  const fromDb = String(dbShieldUrl || '').trim();
+  if (/^https?:\/\//i.test(fromDb)) return fromDb;
+  const n = normKey(teamName);
+  if (!n) return '';
+  if (TEAM_SHIELDS_BY_KEY[n]) return TEAM_SHIELDS_BY_KEY[n];
+  for (const [key, url] of Object.entries(TEAM_SHIELDS_BY_KEY)) {
+    if (n.includes(key) || key.includes(n)) return url;
+  }
+  return '';
+}
+
+function normalizeTeam(raw) {
+  const name = pickField(raw, ['nombre', 'name', 'team_name', 'equipo'], 'Equipo');
+  const rawShield = pickField(raw, ['shield_url', 'escudo_url', 'shield', 'escudo'], '');
+  return {
+    id: raw.id,
+    name,
+    access_code: pickField(raw, ['código_de_acceso', 'codigo_de_acceso', 'access_code', 'codigo', 'code', 'clave'], ''),
+    shield_url: resolveTeamShieldUrl(name, rawShield),
+    balance: Number(pickField(raw, ['balance', 'saldo', 'dolares', 'dollars'], 0)) || 0
+  };
+}
+
+function normalizeItem(raw) {
+  return {
+    id: raw.id,
+    name: pickField(raw, ['nombre', 'name', 'title', 'item_name'], 'Artículo'),
+    description: pickField(raw, ['descripcion', 'description', 'efecto', 'effect'], ''),
+    rarity: pickField(raw, ['rareza', 'rarity', 'tier'], 'Común'),
+    price: Number(pickField(raw, ['precio', 'price', 'cost', 'costo'], 0)) || 0
+  };
+}
+
+function normalizePurchase(raw) {
+  return {
+    id: raw.id,
+    team_id: pickField(raw, ['equipo_id', 'team_id'], null),
+    item_id: pickField(raw, ['elemento_id', 'item_id'], null),
+    item_name: pickField(raw, ['elemento_nombre', 'nombre_elemento', 'item_name', 'name'], 'Artículo'),
+    price_paid: Number(pickField(raw, ['precio_pagado', 'price_paid', 'precio', 'price', 'amount'], 0)) || 0,
+    purchased_at: pickField(raw, ['creado_en', 'purchased_at', 'created_at', 'fecha'], new Date().toISOString())
+  };
+}
+
+function getItemEffect(item) {
+  if (item && item.description && String(item.description).trim()) {
+    return String(item.description).trim();
+  }
+  const key = normKey(item && item.name);
+  if (key && ITEM_EFFECTS_BY_NAME[key]) {
+    return ITEM_EFFECTS_BY_NAME[key];
+  }
+  if (key.includes('tesoro') || normKey(item && item.rarity).includes('bonus')) {
+    return 'Te permite usar dos ítems en una misma jornada y otorga beneficios de ítem bonus.';
+  }
+  return 'Artículo oficial de la Copa Bikini Bottom.';
+}
+
+const FALLBACK_LOGO_SVG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="22" fill="#ffd84d"/><rect x="14" y="44" width="92" height="56" rx="10" fill="#8b2e26" stroke="#093752" stroke-width="5"/><rect x="18" y="16" width="84" height="24" rx="7" fill="#fff3bd" stroke="#093752" stroke-width="4"/><text x="60" y="32" font-family="sans-serif" font-size="11" font-weight="900" text-anchor="middle" fill="#7c1d18">BARG\'N-MART</text><circle cx="60" cy="72" r="15" fill="#e8f6fb" stroke="#093752" stroke-width="3"/><circle cx="55" cy="70" r="2.2" fill="#093752"/><circle cx="65" cy="70" r="2.2" fill="#093752"/></svg>'
+);
+
+const FALLBACK_SHIELD_SVG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path d="M40 8 L68 18 V40 C68 58 55 68 40 74 C25 68 12 58 12 40 V18 Z" fill="#ffd84d" stroke="#093752" stroke-width="5"/><circle cx="40" cy="40" r="12" fill="#0b5e85"/></svg>'
+);
+
+const $ = id => document.getElementById(id);
+const money = n => '$' + Number(n || 0).toFixed(0);
+const sbBill = (n, small = false) => `<span class="spongebob-bill${small ? ' sm' : ''}" title="Dólares verdes de Bob Esponja">$${Number(n || 0).toFixed(0)}</span>`;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const attr = s => esc(s);
+const safeUrl = u => {
+  const s = String(u || '').trim();
+  return /^https?:\/\//i.test(s) ? s : '';
+};
+
+function renderShieldHtml(team, sizeClass = 'sm') {
+  const url = safeUrl(resolveTeamShieldUrl(team && team.name, team && team.shield_url));
+  const finalSrc = url || FALLBACK_SHIELD_SVG;
+  return `<span class="shield-box ${sizeClass}"><img src="${attr(finalSrc)}" onerror="this.onerror=null;this.src='${attr(FALLBACK_SHIELD_SVG)}'" alt=""></span>`;
+}
+
+function initLogo() {
+  const img = $('mainLogoImg');
+  const candidate = safeUrl(DEFAULT_LOGO_URL);
+  img.onerror = () => {
+    if (img.src !== FALLBACK_LOGO_SVG) img.src = FALLBACK_LOGO_SVG;
+  };
+  img.src = candidate || FALLBACK_LOGO_SVG;
+}
+initLogo();
+
+let state = { adminCode: 'BARGN2026', teams: [], items: [], purchases: [], lastErrors: [] };
+let current = null;
+let busy = false;
+
+async function sbRequest(tablePath, method = 'GET', body = null) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 12000);
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${tablePath}`, {
+      method,
+      signal: ctrl.signal,
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: body ? JSON.stringify(body) : null
+    });
+    const text = await res.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch (_) { data = text; }
+    if (!res.ok) {
+      const msg = (data && (data.message || data.error_description || data.hint)) || text || ('HTTP ' + res.status);
+      const err = new Error(msg);
+      err.code = data && data.code;
+      throw err;
+    }
+    return data;
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      throw new Error('Tiempo de espera agotado al conectar con Supabase.');
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function fetchTableSmart(tableName) {
+  try {
+    const ordered = await sbRequest(`${tableName}?select=*&order=id.asc`);
+    if (Array.isArray(ordered)) return ordered;
+  } catch (_) {}
+  const plain = await sbRequest(`${tableName}?select=*`);
+  return Array.isArray(plain) ? plain : [];
+}
+
+function table(head, rows) {
+  return '<div class="scroll"><table><thead><tr>' +
+    head.map(x => '<th>' + x + '</th>').join('') +
+    '</tr></thead><tbody>' +
+    rows.map(r => '<tr>' + r.map(x => '<td>' + x + '</td>').join('') + '</tr>').join('') +
+    '</tbody></table></div>';
+}
+
+async function loadAllData() {
+  state.lastErrors = [];
+  const [adminRes, teamsRes, itemsRes, purchasesRes] = await Promise.allSettled([
+    sbRequest('admin_config?id=eq.1&select=admin_code'),
+    fetchTableSmart(TABLES.teams),
+    fetchTableSmart(TABLES.items),
+    fetchTableSmart(TABLES.purchases)
+  ]);
+
+  if (adminRes.status === 'fulfilled') {
+    const rows = adminRes.value;
+    state.adminCode = ((rows && rows[0] && rows[0].admin_code) || 'BARGN2026').trim().toUpperCase();
+  }
+
+  if (teamsRes.status === 'fulfilled') {
+    state.teams = teamsRes.value.map(normalizeTeam);
+  } else {
+    state.teams = [];
+    state.lastErrors.push(`Tabla "${TABLES.teams}": ${teamsRes.reason && teamsRes.reason.message}`);
+  }
+
+  if (itemsRes.status === 'fulfilled') {
+    state.items = itemsRes.value.map(normalizeItem);
+  } else {
+    state.items = [];
+    state.lastErrors.push(`Tabla "${TABLES.items}": ${itemsRes.reason && itemsRes.reason.message}`);
+  }
+
+  if (purchasesRes.status === 'fulfilled') {
+    state.purchases = purchasesRes.value.map(normalizePurchase);
+  } else {
+    state.purchases = [];
+    state.lastErrors.push(`Tabla "${TABLES.purchases}": ${purchasesRes.reason && purchasesRes.reason.message}`);
+  }
+
+  const diagEl = $('dbDiag');
+  if (state.lastErrors.length) {
+    diagEl.innerHTML = 'Aviso de Supabase: ' + esc(state.lastErrors.join(' | '));
+    diagEl.classList.remove('hidden');
+  } else {
+    diagEl.textContent = '';
+    diagEl.classList.add('hidden');
+  }
+
+  if (current && !current.admin) {
+    const updatedTeam = state.teams.find(t => t.id === current.team.id);
+    if (updatedTeam) {
+      current.team = updatedTeam;
+    } else if (!state.lastErrors.length) {
+      alert('Tu equipo fue eliminado o actualizado. Se cerrará la sesión.');
+      logout();
+    }
+  }
+}
+
+async function login() {
+  if (busy) return;
+  const raw = ($('code').value || '').trim().toUpperCase();
+  $('loginError').textContent = '';
+  if (!raw) {
+    $('loginError').textContent = 'Escribe un código de acceso.';
+    return;
+  }
+
+  busy = true;
+  $('loginBtn').disabled = true;
+  $('loginBtn').textContent = 'Verificando...';
+
+  try {
+    await loadAllData();
+    if (raw === state.adminCode || raw === 'BARGN2026') {
+      current = { admin: true };
+      showApp();
+      return;
+    }
+    const foundTeam = state.teams.find(t => String(t.access_code || '').trim().toUpperCase() === raw);
+    if (foundTeam) {
+      current = { admin: false, team: foundTeam };
+      showApp();
+    } else {
+      $('loginError').textContent = 'Código no válido. Revisa e inténtalo de nuevo.';
+    }
+  } catch (err) {
+    $('loginError').textContent = 'Error al conectar con Supabase: ' + (err.message || err);
+  } finally {
+    busy = false;
+    $('loginBtn').disabled = false;
+    $('loginBtn').textContent = 'Ingresar';
+  }
+}
+
+function showApp() {
+  $('loginView').classList.add('hidden');
+  $('appView').classList.remove('hidden');
+  $('roleLabel').textContent = current.admin ? 'CUENTA DE ADMINISTRACIÓN' : 'CUENTA DE EQUIPO';
+  $('welcome').textContent = current.admin ? 'Panel de administración' : current.team.name;
+
+  const shieldWrap = $('activeTeamShieldWrap');
+  if (!current.admin) {
+    shieldWrap.innerHTML = renderShieldHtml(current.team, 'lg');
+    shieldWrap.classList.remove('hidden');
+  } else {
+    shieldWrap.innerHTML = '';
+    shieldWrap.classList.add('hidden');
+  }
+
+  $('teamView').classList.toggle('hidden', !!current.admin);
+  $('adminView').classList.toggle('hidden', !current.admin);
+  render();
+}
+
+function logout() {
+  current = null;
+  $('appView').classList.add('hidden');
+  $('loginView').classList.remove('hidden');
+  $('code').value = '';
+  $('loginError').textContent = '';
+}
+
+async function refreshData() {
+  if (!current || busy) return;
+  busy = true;
+  $('refreshBtn').textContent = 'Actualizando...';
+  try {
+    await loadAllData();
+    render();
+  } catch (err) {
+    alert('No se pudo actualizar: ' + (err.message || err));
+  } finally {
+    busy = false;
+    $('refreshBtn').textContent = 'Actualizar';
+  }
+}
+
+function render() {
+  if (!current) return;
+  if (current.admin) {
+    $('balancePill').textContent = 'Control general';
+    renderAdmin();
+  } else {
+    $('balancePill').innerHTML = 'Saldo: ' + sbBill(current.team.balance, true);
+    renderStore();
+    renderInventory();
+    renderTeamHistory();
+    renderTeamStandings();
+  }
+}
+
+function getTeamPurchases(teamId) {
+  return state.purchases.filter(p => p.team_id === teamId);
+}
+
+function tierClass(rarity) {
+  const r = normKey(rarity);
+  if (r.includes('rar')) return 'tier-raro';
+  if (r.includes('pic')) return 'tier-epico';
+  if (r.includes('legend')) return 'tier-legendario';
+  if (r.includes('bon')) return 'tier-bonus';
+  return 'tier-comun';
+}
+
+function renderStore() {
+  const myPurchases = getTeamPurchases(current.team.id);
+  const ownedIds = new Set(myPurchases.map(p => p.item_id));
+  const balance = Number(current.team.balance || 0);
+
+  if (!state.items.length) {
+    $('catalog').innerHTML = '<p class="muted">No hay artículos disponibles en este momento.</p>';
+    return;
+  }
+
+  const order = ['Común', 'Raro', 'Épico', 'Legendario', 'Bonus'];
+  const grouped = new Map();
+  for (const it of state.items) {
+    const key = it.rarity || 'Común';
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(it);
+  }
+
+  const sortedKeys = [
+    ...order.filter(k => grouped.has(k)),
+    ...[...grouped.keys()].filter(k => !order.includes(k))
+  ];
+
+  $('catalog').innerHTML = sortedKeys.map(rarityKey => {
+    const list = grouped.get(rarityKey);
+    const cards = list.map(it => {
+      const owned = ownedIds.has(it.id);
+      const enough = balance >= Number(it.price || 0);
+      const statusText = owned ? 'Ya adquirido (1/1)' : enough ? 'Saldo suficiente · 1 compra por jornada' : 'Saldo insuficiente';
+      const btnText = owned ? 'Ya comprado' : 'Comprar';
+      const descText = esc(getItemEffect(it));
+      return `<article class="item">
+        <span class="rarity">${esc(it.rarity)}</span>
+        <h3>${esc(it.name)}</h3>
+        <div class="desc"><b>Para qué sirve:</b> ${descText}</div>
+        <div class="price">${sbBill(it.price)}</div>
+        <span class="muted small">${statusText}</span>
+        <button type="button" ${owned || !enough ? 'disabled' : ''} data-buy="${it.id}">${btnText}</button>
+      </article>`;
+    }).join('');
+
+    return `
+      <div><span class="tier-header ${tierClass(rarityKey)}">Ítems ${esc(rarityKey)}</span></div>
+      <div class="grid">${cards}</div>
+    `;
+  }).join('');
+
+  $('catalog').querySelectorAll('[data-buy]').forEach(btn => {
+    btn.onclick = () => buyItem(Number(btn.dataset.buy));
+  });
+}
+
+async function buyItem(itemId) {
+  if (busy || !current || current.admin) return;
+  const item = state.items.find(x => x.id === itemId);
+  if (!item) return;
+
+  await loadAllData();
+  const team = state.teams.find(t => t.id === current.team.id);
+  if (!team) return;
+  current.team = team;
+
+  const alreadyBought = state.purchases.some(p => p.team_id === team.id && p.item_id === item.id);
+  if (alreadyBought) {
+    alert('Este equipo ya compró este artículo. Solo se permite una unidad por equipo.');
+    render();
+    return;
+  }
+
+  if (Number(team.balance) < Number(item.price)) {
+    alert('No tienes saldo acumulado suficiente para este artículo.');
+    render();
+    return;
+  }
+
+  if (!confirm(`¿Registrar la compra de "${item.name}" por ${money(item.price)}?\n\nRecuerda:\n• Solo se puede comprar 1 artículo por jornada.\n• Tus dólares NO se descontarán.`)) {
+    return;
+  }
+
+  busy = true;
+  try {
+    await sbRequest(TABLES.purchases, 'POST', {
+      team_id: team.id,
+      item_id: item.id,
+      item_name: item.name,
+      price_paid: Number(item.price)
+    });
+    alert('¡Compra registrada! Recuerda que solo se permite 1 compra por jornada y tu saldo permanece intacto.');
+    await loadAllData();
+    render();
+  } catch (err) {
+    if (err.code === '23505' || String(err.message).includes('duplicate')) {
+      alert('Ya habías adquirido este artículo anteriormente.');
+    } else {
+      alert('Error al registrar la compra: ' + (err.message || err));
+    }
+  } finally {
+    busy = false;
+  }
+}
+
+function renderInventory() {
+  const myPurchases = getTeamPurchases(current.team.id);
+  if (!myPurchases.length) {
+    $('inventory').innerHTML = '<p class="muted">Todavía no tienes artículos adquiridos.</p>';
+    return;
+  }
+  $('inventory').innerHTML = '<div class="grid">' + myPurchases.map(p => {
+    const itemInfo = state.items.find(i => i.id === p.item_id) || { name: p.item_name };
+    const rarity = itemInfo.rarity || 'Artículo';
+    const desc = getItemEffect(itemInfo);
+    return `<article class="item">
+      <span class="rarity">${esc(rarity)}</span>
+      <b>${esc(p.item_name)}</b>
+      <div class="desc"><b>Para qué sirve:</b> ${esc(desc)}</div>
+      <span class="muted small">Adquirido (1 unidad)</span>
+    </article>`;
+  }).join('') + '</div>';
+}
+
+function renderTeamHistory() {
+  const myPurchases = getTeamPurchases(current.team.id);
+  if (!myPurchases.length) {
+    $('teamHistory').innerHTML = '<p class="muted">Aún no hay compras registradas.</p>';
+    return;
+  }
+  $('teamHistory').innerHTML = table(
+    ['Artículo', 'Precio de referencia', 'Fecha'],
+    myPurchases.map(p => [
+      esc(p.item_name),
+      sbBill(p.price_paid, true),
+      esc(new Date(p.purchased_at).toLocaleString('es-MX'))
+    ])
+  );
+}
+
+function renderTeamStandings() {
+  const ranked = [...state.teams].sort((a, b) => Number(b.balance || 0) - Number(a.balance || 0));
+  if (!ranked.length) {
+    $('teamStandings').innerHTML = '<p class="muted">No hay equipos registrados.</p>';
+    return;
+  }
+  $('teamStandings').innerHTML = '<div class="scroll"><table class="board-table"><thead><tr><th>#</th><th>Equipo</th><th>Dólares disponibles</th></tr></thead><tbody>' +
+    ranked.map((t, idx) => `<tr>
+      <td><span class="rank-badge">${idx + 1}</span></td>
+      <td><div class="team-cell">${renderShieldHtml(t, 'sm')}<span>${esc(t.name)}</span></div></td>
+      <td><span class="pill">${sbBill(t.balance, true)}</span></td>
+    </tr>`).join('') +
+    '</tbody></table></div>';
+}
+
+function renderAdmin() {
+  renderAdminTeams();
+  renderAdminCatalog();
+  renderAdminRecords();
+}
+
+function renderAdminTeams() {
+  if (!state.teams.length) {
+    $('teamRows').innerHTML = '<tr><td colspan="5" class="muted">No hay equipos registrados.</td></tr>';
+    return;
+  }
+
+  $('teamRows').innerHTML = state.teams.map(t => {
+    const boughtCount = state.purchases.filter(p => p.team_id === t.id).length;
+    return `<tr>
+      <td>
+        <div class="team-cell" style="margin-bottom:6px">
+          ${renderShieldHtml(t, 'sm')}
+          <input id="tname_${t.id}" value="${attr(t.name)}" style="width:145px">
+        </div>
+        <input id="tshield_${t.id}" value="${attr(t.shield_url || '')}" placeholder="URL del escudo (opcional)" style="width:185px">
+        <div class="small muted">Compras: ${boughtCount}</div>
+      </td>
+      <td><input id="tcode_${t.id}" value="${attr(t.access_code)}" style="width:105px;text-transform:uppercase"></td>
+      <td>${sbBill(t.balance, true)}</td>
+      <td>
+        <div class="row">
+          <input id="tdelta_${t.id}" type="number" min="1" step="1" placeholder="Cant." style="width:80px">
+          <button type="button" data-add-bal="${t.id}">+ Sumar</button>
+          <button type="button" class="secondary" data-sub-bal="${t.id}">- Quitar</button>
+          <button type="button" class="danger" data-set-bal="${t.id}">Fijar</button>
+        </div>
+      </td>
+      <td>
+        <div class="row">
+          <button type="button" class="successBtn" data-save-team="${t.id}">Guardar</button>
+          <button type="button" class="danger" data-del-team="${t.id}">Eliminar</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  $('teamRows').querySelectorAll('[data-add-bal]').forEach(b => b.onclick = () => changeBalance(Number(b.dataset.addBal), 'add'));
+  $('teamRows').querySelectorAll('[data-sub-bal]').forEach(b => b.onclick = () => changeBalance(Number(b.dataset.subBal), 'sub'));
+  $('teamRows').querySelectorAll('[data-set-bal]').forEach(b => b.onclick = () => changeBalance(Number(b.dataset.setBal), 'set'));
+  $('teamRows').querySelectorAll('[data-save-team]').forEach(b => b.onclick = () => saveTeam(Number(b.dataset.saveTeam)));
+  $('teamRows').querySelectorAll('[data-del-team]').forEach(b => b.onclick = () => deleteTeam(Number(b.dataset.delTeam)));
+}
+
+async function createTeam() {
+  if (busy) return;
+  const name = ($('newTeamName').value || '').trim();
+  const code = ($('newTeamCode').value || '').trim().toUpperCase();
+  const shield_url = resolveTeamShieldUrl(name, $('newTeamShield').value);
+  const balance = Number($('newTeamBalance').value || 0);
+
+  if (!name || !code) return alert('Escribe el nombre del equipo y su código de acceso.');
+  if (!Number.isInteger(balance) || balance < 0) return alert('El saldo inicial debe ser un número entero de 0 o mayor.');
+
+  busy = true;
+  try {
+    await sbRequest(TABLES.teams, 'POST', { name, access_code: code, shield_url, balance });
+    $('newTeamName').value = '';
+    $('newTeamCode').value = '';
+    $('newTeamShield').value = '';
+    $('newTeamBalance').value = '0';
+    await loadAllData();
+    renderAdmin();
+  } catch (err) {
+    alert('No se pudo crear el equipo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+async function changeBalance(teamId, mode) {
+  if (busy) return;
+  const team = state.teams.find(t => t.id === teamId);
+  if (!team) return;
+
+  let newBalance = Number(team.balance || 0);
+  if (mode === 'add' || mode === 'sub') {
+    const rawVal = Number($('tdelta_' + teamId).value);
+    if (!Number.isInteger(rawVal) || rawVal <= 0) {
+      return alert('Escribe una cantidad entera mayor a 0 en el campo de dólares.');
+    }
+    newBalance = mode === 'add' ? newBalance + rawVal : Math.max(0, newBalance - rawVal);
+  } else if (mode === 'set') {
+    const entered = prompt(`Nuevo saldo total de dólares para ${team.name}:`, String(team.balance));
+    if (entered === null) return;
+    const parsed = Number(entered);
+    if (!Number.isInteger(parsed) || parsed < 0) {
+      return alert('Ingresa un saldo entero válido (0 o mayor).');
+    }
+    newBalance = parsed;
+  }
+
+  busy = true;
+  try {
+    await sbRequest(`${TABLES.teams}?id=eq.${teamId}`, 'PATCH', { balance: newBalance });
+    if ($('tdelta_' + teamId)) $('tdelta_' + teamId).value = '';
+    await loadAllData();
+    renderAdmin();
+  } catch (err) {
+    alert('Error al actualizar el saldo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+async function saveTeam(teamId) {
+  if (busy) return;
+  const name = ($('tname_' + teamId).value || '').trim();
+  const code = ($('tcode_' + teamId).value || '').trim().toUpperCase();
+  const shield_url = resolveTeamShieldUrl(name, $('tshield_' + teamId).value);
+  if (!name || !code) return alert('El equipo necesita nombre y código.');
+
+  busy = true;
+  try {
+    await sbRequest(`${TABLES.teams}?id=eq.${teamId}`, 'PATCH', { name, access_code: code, shield_url });
+    await loadAllData();
+    renderAdmin();
+    alert('Equipo actualizado.');
+  } catch (err) {
+    alert('No se pudo guardar el equipo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+async function deleteTeam(teamId) {
+  if (busy) return;
+  const team = state.teams.find(t => t.id === teamId);
+  if (!team) return;
+  if (!confirm(`¿Eliminar al equipo "${team.name}" y su historial de compras?`)) return;
+
+  busy = true;
+  try {
+    await sbRequest(`${TABLES.teams}?id=eq.${teamId}`, 'DELETE');
+    await loadAllData();
+    renderAdmin();
+  } catch (err) {
+    alert('Error al eliminar equipo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+function renderAdminCatalog() {
+  if (!state.items.length) {
+    $('adminCatalog').innerHTML = '<p class="muted">No hay artículos en el catálogo.</p>';
+    return;
+  }
+
+  const rarities = ['Común', 'Raro', 'Épico', 'Legendario', 'Bonus'];
+  $('adminCatalog').innerHTML = state.items.map(it => {
+    const opts = rarities.map(r => `<option value="${r}" ${it.rarity === r ? 'selected' : ''}>${r}</option>`).join('');
+    const currentDesc = getItemEffect(it);
+    return `<article class="item">
+      <label class="small muted">Nombre</label>
+      <input id="iname_${it.id}" value="${attr(it.name)}">
+      <label class="small muted">Para qué sirve / Efecto</label>
+      <input id="idesc_${it.id}" value="${attr(currentDesc)}" placeholder="Describe para qué sirve">
+      <label class="small muted">Rareza</label>
+      <select id="irar_${it.id}">${opts}</select>
+      <label class="small muted">Precio ($)</label>
+      <input id="iprice_${it.id}" type="number" min="0" step="1" value="${Number(it.price)}">
+      <div class="row" style="margin-top:6px">
+        <button type="button" data-save-item="${it.id}">Guardar</button>
+        <button type="button" class="danger" data-del-item="${it.id}">Eliminar</button>
+      </div>
+    </article>`;
+  }).join('');
+
+  $('adminCatalog').querySelectorAll('[data-save-item]').forEach(b => b.onclick = () => saveItem(Number(b.dataset.saveItem)));
+  $('adminCatalog').querySelectorAll('[data-del-item]').forEach(b => b.onclick = () => deleteItem(Number(b.dataset.del-item)));
+}
+
+async function createItem() {
+  if (busy) return;
+  const name = ($('newItemName').value || '').trim();
+  const rawDesc = ($('newItemDesc').value || '').trim();
+  const rarity = $('newItemRarity').value;
+  const description = rawDesc || getItemEffect({ name, rarity });
+  const price = Number($('newItemPrice').value);
+
+  if (!name) return alert('Escribe el nombre del artículo.');
+  if (!Number.isInteger(price) || price < 0) return alert('Escribe un precio entero válido (0 o mayor).');
+
+  busy = true;
+  try {
+    await sbRequest(TABLES.items, 'POST', { name, description, rarity, price });
+    $('newItemName').value = '';
+    $('newItemDesc').value = '';
+    $('newItemPrice').value = '';
+    await loadAllData();
+    renderAdmin();
+  } catch (err) {
+    alert('Error al crear el artículo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+async function saveItem(itemId) {
+  if (busy) return;
+  const name = ($('iname_' + itemId).value || '').trim();
+  const rarity = $('irar_' + itemId).value;
+  const rawDesc = ($('idesc_' + itemId).value || '').trim();
+  const description = rawDesc || getItemEffect({ name, rarity });
+  const price = Number($('iprice_' + itemId).value);
+
+  if (!name) return alert('El artículo necesita un nombre.');
+  if (!Number.isInteger(price) || price < 0) return alert('El precio debe ser un número entero de 0 o mayor.');
+
+  busy = true;
+  try {
+    await sbRequest(`${TABLES.items}?id=eq.${itemId}`, 'PATCH', { name, description, rarity, price });
+    await loadAllData();
+    renderAdmin();
+    alert('Artículo actualizado.');
+  } catch (err) {
+    alert('Error al guardar el artículo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+async function deleteItem(itemId) {
+  if (busy) return;
+  const item = state.items.find(i => i.id === itemId);
+  if (!item) return;
+  if (!confirm(`¿Eliminar el artículo "${item.name}" del catálogo?`)) return;
+
+  busy = true;
+  try {
+    await sbRequest(`${TABLES.items}?id=eq.${itemId}`, 'DELETE');
+    await loadAllData();
+    renderAdmin();
+  } catch (err) {
+    alert('Error al eliminar el artículo: ' + (err.message || err));
+  } finally {
+    busy = false;
+  }
+}
+
+function renderAdminRecords() {
+  const prevFilter = $('filterTeam').value;
+  $('filterTeam').innerHTML = '<option value="">Todos los equipos</option>' +
+    state.teams.map(t => `<option value="${t.id}">${esc(t.name)}</option>`).join('');
+  if (state.teams.some(t => String(t.id) === prevFilter)) {
+    $('filterTeam').value = prevFilter;
+  }
+
+  const selectedTeamId = $('filterTeam').value ? Number($('filterTeam').value) : null;
+  const teamMap = Object.fromEntries(state.teams.map(t => [t.id, t.name]));
+  const filtered = selectedTeamId
+    ? state.purchases.filter(p => p.team_id === selectedTeamId)
+    : state.purchases;
+
+  if (!filtered.length) {
+    $('allRecords').innerHTML = '<p class="muted">No hay compras registradas con este filtro.</p>';
+    return;
+  }
+
+  $('allRecords').innerHTML = table(
+    ['Equipo', 'Artículo', 'Precio', 'Fecha'],
+    filtered.map(p => [
+      `<b>${esc(teamMap[p.team_id] || 'Equipo eliminado')}</b>`,
+      esc(p.item_name),
+      sbBill(p.price_paid, true),
+      esc(new Date(p.purchased_at).toLocaleString('es-MX'))
+    ])
+  );
+}
+
+$('loginBtn').onclick = login;
+$('code').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+$('logoutBtn').onclick = logout;
+$('refreshBtn').onclick = refreshData;
+$('createTeamBtn').onclick = createTeam;
+$('createItemBtn').onclick = createItem;
+$('filterTeam').onchange = renderAdminRecords;
+
+document.querySelectorAll('[data-tab]').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('[data-tab]').forEach(x => x.classList.toggle('active', x === b));
+    ['store', 'inventory', 'history', 'standings'].forEach(x => $(x + 'Tab').classList.toggle('hidden', x !== b.dataset.tab));
+  };
+});
+
+document.querySelectorAll('[data-admin-tab]').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('[data-admin-tab]').forEach(x => x.classList.toggle('active', x === b));
+    ['teams', 'catalogAdmin', 'records'].forEach(x => $(x + 'Tab').classList.toggle('hidden', x !== b.dataset.adminTab));
+  };
+});
+</script>
+</body>
+</html>
