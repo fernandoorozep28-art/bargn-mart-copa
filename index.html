@@ -549,7 +549,7 @@ const ITEM_EFFECTS_BY_NAME = {
 };
 
 function normKey(s) {
-  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
 }
 
 function pickField(obj, keys, fallback = '') {
@@ -1198,7 +1198,7 @@ function renderAdminCatalog() {
   }).join('');
 
   $('adminCatalog').querySelectorAll('[data-save-item]').forEach(b => b.onclick = () => saveItem(Number(b.dataset.saveItem)));
-  $('adminCatalog').querySelectorAll('[data-del-item]').forEach(b => b.onclick = () => deleteItem(Number(b.dataset.del-item)));
+  $('adminCatalog').querySelectorAll('[data-del-item]').forEach(b => b.onclick = () => deleteItem(Number(b.dataset.delItem)));
 }
 
 async function createItem() {
